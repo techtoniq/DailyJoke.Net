@@ -35,7 +35,10 @@ namespace DailyJoke.Infrastructure.Persistence
         {
             try
             {
-                await TrySeedAsync();
+                if (_context.Database.IsInMemory())
+                {
+                    await TrySeedAsync();
+                }
             }
             catch (Exception ex)
             {
