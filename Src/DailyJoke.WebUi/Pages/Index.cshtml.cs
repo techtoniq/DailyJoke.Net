@@ -4,6 +4,7 @@ using DailyJoke.Application.Entities.JokeState.Commands;
 using DailyJoke.Application.Entities.JokeState.Queries;
 using DailyJoke.Application.Interfaces;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DailyJoke.WebUi.Pages
@@ -24,7 +25,7 @@ namespace DailyJoke.WebUi.Pages
             _dateTimeProvider = dateTimeProvider;
         }
 
-        public async void OnGet()
+        public async Task<IActionResult> OnGet()
         {
             Today = _dateTimeProvider.UtcNow.Date;
 
@@ -41,8 +42,7 @@ namespace DailyJoke.WebUi.Pages
             if(!jokes.Any())
             {
                 // error - no jokes
-                // @ToDo: handle this properly
-                throw new Exception("No jokes");
+                return RedirectToPage("Error");
             }
 
             var currentJoke = jokes.FirstOrDefault(j => j.Id == jokeState.JokeId);
@@ -58,6 +58,8 @@ namespace DailyJoke.WebUi.Pages
             }
 
             Joke = currentJoke;
+
+            return Page();
         }
     }
 }
