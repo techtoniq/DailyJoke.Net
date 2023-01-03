@@ -27,6 +27,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{5D743117-5D94-434C-BE89-4E54B587AE04}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{61E8F049-161F-4D2E-A4CE-F19C0B4365A3}"
+	ProjectSection(SolutionItems) = preProject
+		UpsertJokes.sql = UpsertJokes.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
