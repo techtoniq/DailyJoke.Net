@@ -1,0 +1,13 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["AppTitle"] = "Daily Dad Joke";
+}
+
+<div class="text-center">
+    <h1>@ViewData["AppTitle"]</h1>
+    <h2>@Model.Today.ToString("dddd") @Model.Today.ToOrdinalWords()</h2>
+    <blockquote class="blockquote">
+    @Model.Joke.Text
+    </blockquote>
+</div>
