@@ -10,7 +10,7 @@ VALUES
 ('My nephew downed a bottle of invisible ink earlier. He''s currently in A&E waiting to be seen.'),
 ('My mate is selling his Sooty and Sweep puppets. He''ll accept low ball offers just to get them off his hands.'),
 ('My mate who lost his leg in a motorbike accident has finally sorted his life out and found himself a job at the brewery. They''ve put him in charge of the hops.'),
-('Somebody has glued my pack of playing cards together and I just can''t deal with it.'),
+('Somebody has glued my pack of playing cards together and I just can''t deal with it.'), 
 ('I''ve got a new baby goat. It has a lopsided head. I''m going to name it ''Humphrey Bogart''. Ears looking askew, kid.'),
 ('I went to my local printer and said "I need a 2m high letter A, a 2m high letter S and a 2m high letter K, and I need them by tomorrow." He said, "I''ll see what I can do but it''s a big ask..."'),
 ('I''ve been nominated for the award of The World''s Most Secretive Person 2022. I can''t tell you what this means to me.'),
@@ -63,7 +63,10 @@ VALUES
 ('Be careful if you’re thinking of getting a rescue cat. My nan had one. She slipped and fell yesterday and the cat literally sat there and did nothing.'),
 ('I was sitting drinking coffee in my slippers this morning, when I thought to myself...I really need to wash some mugs.'),
 ('Sky has full coverage of the Hairdresser of the Year awards. BBC are just showing the highlights.'),
-('I lost my dog in the park last night. Was shouting his name for ages without any luck. Went home to check and the missus said I should try looking harder. So I shaved my head and got a tattoo but still couldn''t find him.')
+('I lost my dog in the park last night. Was shouting his name for ages without any luck. Went home to check and the missus said I should try looking harder. So I shaved my head and got a tattoo but still couldn''t find him.'),
+('"What''s the best thing about Switzerland?" "I don''t know, but the flag is a big plus."'),
+('"Mountains aren''t just funny. They''re hill areas."'),
+('Today at the bank, an old lady asked me to check her balance...So I pushed her over.')
 
 SET IDENTITY_INSERT [dbo].[Jokes] ON;
 
