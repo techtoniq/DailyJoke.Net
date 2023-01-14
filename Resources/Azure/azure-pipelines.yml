@@ -24,7 +24,7 @@ steps:
     resourceGroupName: '$(ResourceGroupName)'
     location: '$(ResourceGroupLocation)'
     templateLocation: 'URL of the file'
-    csmFileLink: 'https://github.com/techtoniq/DailyJoke.Net/Resources/Azure/azuredeploy_database.json'
+    csmFileLink: 'https://github.com/techtoniq/DailyJoke.Net/blob/main/Resources/Azure/azuredeploy_database.json'
     overrideParameters: |
       -env "$(Env)"
       -company "$(Company)"
