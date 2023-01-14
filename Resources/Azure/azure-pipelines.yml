@@ -15,20 +15,20 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
+- task: AzureResourceManagerTemplateDeployment@3
   inputs:
-    restoreSolution: '$(solution)'
-
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Pay-As-You-Go Dev/Test(196bc91b-c467-4d8d-ab33-1d2e5b518195)'
+    subscriptionId: '196bc91b-c467-4d8d-ab33-1d2e5b518195'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: '$(ResourceGroupName)'
+    location: '$(ResourceGroupLocation)'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://github.com/techtoniq/DailyJoke.Net'
+    overrideParameters: |
+      -env "$(Env)"
+      -company "$(Company)"
+      -sqladminusername "$(SqlAdminUsername)"
+      -sqladminpassword "$(SqlAdminPassword)"
+    deploymentMode: 'Incremental'
+    deploymentName: 'DeployPipelineTemplate'
