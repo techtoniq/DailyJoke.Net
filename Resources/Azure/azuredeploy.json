@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "env": {
+      "defaultValue": "env",
+      "type": "String"
+    },
+    "company": {
+      "defaultValue": "company",
+      "type": "String"
+    },
+    "sqladminusername": {
+      "defaultValue": "",
+      "type": "String"
+    },
+    "sqladminpassword": {
+      "defaultValue": "",
+      "type": "String"
+    }
+  },
+  "resources": [
+    {
+      "name": "linkedWebappTemplate",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "relativePath": "azuredeploy_database.json"
+        },
+        "parameters": {
+          "env": {
+            "value": "[parameters('env')]"
+          },
+          "company": {
+            "value": "[parameters('company')]"
+          },
+          "sqladminusername": {
+            "value": "[parameters('sqladminusername')]"
+          },
+          "sqladminpassword": {
+            "value": "[parameters('sqladminpassword')]"
+          }
+        }
+      }
+    },
+    {
+      "name": "linkedWebappTemplate",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "relativePath": "azuredeploy_webapp.json"
+        },
+        "parameters": {
+          "env": {
+            "value": "[parameters('env')]"
+          },
+          "company": {
+            "value": "[parameters('company')]"
+          }
+        }
+      }
+    }
+  ]
+}

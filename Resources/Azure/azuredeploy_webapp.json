@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "env": {
+      "defaultValue": "env",
+      "type": "String"
+    },
+    "company": {
+      "defaultValue": "company",
+      "type": "String"
+    }
+  },
+  "variables": {
+    "appserviceplanname": "[concat(parameters('env'), '-serviceplan-', parameters('company'))]",
+    "appservername": "[concat(parameters('env'), '-appserver-', parameters('company'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2022-03-01",
+      "name": "[variables('appserviceplanname')]",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "tagName1": "[parameters('env')]"
+      },
+      "sku": {
+        "name": "B1",
+        "size": "B1",
+        "family": "B",
+        "capacity": "1",
+        "tier": "Basic"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2022-03-01",
+      "dependsOn": [
+        "[variables('appserviceplanname')]"
+      ],
+      "name": "[variables('appservername')]",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "tagName1": "[parameters('env')]"
+      },
+      "kind": "app",
+      "properties": {
+        "httpsOnly": "false",
+        "storageAccountRequired": "false",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appserviceplanname'))]"
+      }
+    }
+  ]
+}

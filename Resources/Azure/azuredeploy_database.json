@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "env": {
+      "defaultValue": "env",
+      "type": "String"
+    },
+    "company": {
+      "defaultValue": "company",
+      "type": "String"
+    },
+    "sqladminusername": {
+      "defaultValue": "",
+      "type": "String"
+    },
+    "sqladminpassword": {
+      "defaultValue": "",
+      "type": "String"
+    }
+  },
+  "variables": {
+    "sqlservername": "[concat(parameters('env'), '-sqlserver-', parameters('company'))]",
+    "databasename": "[concat(parameters('env'), '-database-', parameters('company'))]",
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2022-05-01-preview",
+      "name": "[variables('sqlservername')]",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "tagName1": "[parameters('env')]"
+      },
+      "properties": {
+        "administratorLogin": "[parameters('sqladminusername')]",
+        "administratorLoginPassword": "[parameters('sqladminpassword')]"
+      },
+      "resources": [
+        {
+          "type": "Microsoft.Sql/servers/databases",
+          "apiVersion": "2022-05-01-preview",
+          "dependsOn": [
+            "[variables('sqlservername')]"
+          ],
+          "name": "[concat(variables('sqlservername'), '/', variables('databasename'))]",
+          "location": "[resourceGroup().location]",
+          "sku": {
+            "name": "Basic",
+            "tier": "Basic",
+            "capacity": 5
+          },
+          "kind": "v12.0,user",
+          "properties": {
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "catalogCollation": "SQL_Latin1_General_CP1_CI_AS"
+          }
+        }
+      ]
+    }
+  ]
+}
