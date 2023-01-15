@@ -21,14 +21,14 @@ steps:
     azureResourceManagerConnection: 'Pay-As-You-Go Dev/Test(196bc91b-c467-4d8d-ab33-1d2e5b518195)'
     subscriptionId: '196bc91b-c467-4d8d-ab33-1d2e5b518195'
     action: 'Create Or Update Resource Group'
-    resourceGroupName: '$(ResourceGroupName)'
-    location: '$(ResourceGroupLocation)'
+    resourceGroupName: 'SundayRGTest1'
+    location: 'North Europe'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://github.com/techtoniq/DailyJoke.Net/blob/main/Resources/Azure/azuredeploy_database.json'
     overrideParameters: |
-      -env "$(Env)"
-      -company "$(Company)"
-      -sqladminusername "$(SqlAdminUsername)"
-      -sqladminpassword "$(SqlAdminPassword)"
+      -env "prod"
+      -company "techtoniq"
+      -sqladminusername "techtoniq"
+      -sqladminpassword "DaveTheD0g"
     deploymentMode: 'Incremental'
     deploymentName: 'DeployPipelineTemplate'
