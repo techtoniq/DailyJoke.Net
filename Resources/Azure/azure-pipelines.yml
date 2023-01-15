@@ -22,7 +22,7 @@ steps:
     subscriptionId: '196bc91b-c467-4d8d-ab33-1d2e5b518195'
     action: 'Create Or Update Resource Group'
     resourceGroupName: 'SundayRGTest1'
-    location: 'North Europe'
+    location: '"North Europe"'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://github.com/techtoniq/DailyJoke.Net/blob/main/Resources/Azure/azuredeploy_database.json'
     overrideParameters: |
